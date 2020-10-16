@@ -47,3 +47,15 @@ FROM commande_ligne
 LEFT JOIN commande ON commande.id = commande_ligne.commande_id
 LEFT JOIN CLIENT ON CLIENT.id = commande.client_id
 GROUP BY commande_id;
+
+-- 6)(Attention - question difficile) Enregistrer le montant total de chaque commande dans le champ
+-- intitulé “cache_prix_total”
+
+
+
+
+-- 7) Obtenir le montant global de toutes les commandes, pour chaque mois
+SELECT YEAR(`date_achat`), MONTH(`date_achat`), SUM(`cache_prix_total`) 
+FROM `commande` 
+GROUP BY YEAR(`date_achat`), MONTH(`date_achat`)
+ORDER BY YEAR(`date_achat`), MONTH(`date_achat`);
