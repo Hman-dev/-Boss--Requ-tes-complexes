@@ -40,3 +40,10 @@ UPDATE commande_ligne
 SET prix_total = prix_unitaire * quantite;
 
 -- 5) Obtenir le montant total pour chaque commande et y voir facilement la date associée à cette commande ainsi que le prénom et nom du client associé
+
+SELECT client.prenom, client.nom , commande.date_achat , commande_id,
+SUM(prix_total) AS 'prix_commande'
+FROM commande_ligne
+LEFT JOIN commande ON commande.id = commande_ligne.commande_id
+LEFT JOIN CLIENT ON CLIENT.id = commande.client_id
+GROUP BY commande_id;
